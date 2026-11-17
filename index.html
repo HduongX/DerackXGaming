@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tên Của Bạn — Cosmic Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/effects.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- BACKGROUND -->
+  <canvas id="stars"></canvas>
+  <div class="nebula">
+    <div class="nebula-blob"></div>
+    <div class="nebula-blob"></div>
+    <div class="nebula-blob"></div>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="orb-wrap">
+      <div class="orb"></div>
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+    </div>
+    <div class="loader-label">Đang khởi tạo vũ trụ</div>
+    <div class="loader-status" id="loaderStatus">Đồng bộ hệ thống sao...</div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text"><span id="progressNum">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- ENTER SCREEN -->
+  <div id="enterScreen" class="hidden">
+    <button id="enterBtn" class="enter-btn"><span>Bước vào vũ trụ</span></button>
+  </div>
+
+  <!-- MAIN -->
+  <main id="main" class="hidden">
+
+    <nav class="nav">
+      <div class="logo"><span class="star">✦</span> TÊN BẠN</div>
+      <div class="nav-links">
+        <a href="#about">Về tôi</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#projects">Dự án</a>
+        <a href="#contact">Liên hệ</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-eyebrow">✦ Portfolio 2025 ✦</div>
+      <h1 class="hero-title">
+        <span class="line">Xin chào, tôi là</span>
+        <span class="name">TÊN BẠN</span>
+      </h1>
+      <p class="hero-sub">Creative Developer · Designer · Dreamer</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">Khám phá</a>
+        <a href="#contact" class="btn-ghost">Liên hệ</a>
+      </div>
+      <div class="scroll-indicator">
+        <span>Cuộn xuống</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <section id="about" class="section about reveal-on-scroll">
+      <div class="about-visual">
+        <div class="photo-frame">
+          <div class="photo-inner">🧑‍🚀</div>
+          <div class="orbit orbit-1"></div>
+          <div class="orbit orbit-2"></div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-label">01 — Về tôi</div>
+        <h2 class="section-title">Một linh hồn<br>phiêu du giữa các vì sao</h2>
+        <p>
+          Tôi là một <strong>creative developer</strong> với niềm đam mê bất tận
+          trong việc tạo ra những trải nghiệm số đẹp đến mức khiến người ta phải nín thở.
+          Tôi tin rằng mỗi pixel đều có linh hồn, mỗi chuyển động đều có câu chuyện riêng.
+        </p>
+        <p>
+          Khi không viết code, tôi dành thời gian ngắm nhìn bầu trời đêm,
+          tưởng tượng về những vì sao xa xôi và tự hỏi: <em>"Nếu mình có thể
+          đưa vũ trụ vào một trang web thì sẽ như thế nào?"</em>
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" class="section skills">
+      <div class="section-label center reveal-on-scroll">02 — Kỹ năng</div>
+      <h2 class="section-title center reveal-on-scroll">Vũ khí của tôi</h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal-on-scroll">
+          <span class="skill-icon">💻</span>
+          <div class="skill-name">Frontend</div>
+          <div class="skill-desc">HTML · CSS · JS · React</div>
+        </div>
+        <div class="skill-card reveal-on-scroll">
+          <span class="skill-icon">🎨</span>
+          <div class="skill-name">Design</div>
+          <div class="skill-desc">UI/UX · Figma · Motion</div>
+        </div>
+        <div class="skill-card reveal-on-scroll">
+          <span class="skill-icon">⚙️</span>
+          <div class="skill-name">Backend</div>
+          <div class="skill-desc">Node.js · Python · SQL</div>
+        </div>
+        <div class="skill-card reveal-on-scroll">
+          <span class="skill-icon">🚀</span>
+          <div class="skill-name">Creative</div>
+          <div class="skill-desc">Three.js · GSAP · WebGL</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects">
+      <div class="section-label reveal-on-scroll">03 — Dự án</div>
+      <h2 class="section-title reveal-on-scroll">Những tinh cầu<br>tôi đã tạo ra</h2>
+      <div class="projects-grid">
+        <a href="#" class="project-card reveal-on-scroll">
+          <div class="project-image">🪐</div>
+          <div class="project-meta">
+            <div class="project-year">2025</div>
+            <h3>Dự án đầu tiên</h3>
+            <p>Mô tả ngắn gọn về dự án — điều gì làm nó đặc biệt, công nghệ nào được dùng.</p>
+          </div>
+        </a>
+        <a href="#" class="project-card reveal-on-scroll">
+          <div class="project-image">🌌</div>
+          <div class="project-meta">
+            <div class="project-year">2024</div>
+            <h3>Dự án thứ hai</h3>
+            <p>Mô tả ngắn gọn về dự án — điều gì làm nó đặc biệt, công nghệ nào được dùng.</p>
+          </div>
+        </a>
+        <a href="#" class="project-card reveal-on-scroll">
+          <div class="project-image">✨</div>
+          <div class="project-meta">
+            <div class="project-year">2024</div>
+            <h3>Dự án thứ ba</h3>
+            <p>Mô tả ngắn gọn về dự án — điều gì làm nó đặc biệt, công nghệ nào được dùng.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="section-label center reveal-on-scroll">04 — Liên hệ</div>
+      <h2 class="section-title center big reveal-on-scroll">Cùng nhau tạo nên<br>điều kỳ diệu</h2>
+      <a href="mailto:hello@example.com" class="email-link reveal-on-scroll">hello@example.com</a>
+      <div class="socials reveal-on-scroll">
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">LinkedIn</a>
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">Twitter</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© 2025 Tên Bạn — All rights reserved</div>
+      <div>Made with ✦ in the cosmos</div>
+    </footer>
+
+  </main>
+
+  <!-- AUDIO TOGGLE -->
+  <button class="audio-toggle" id="audioToggle" aria-label="Toggle music">
+    <span class="wave"></span>
+    <span class="wave"></span>
+    <span class="wave"></span>
+    <span class="wave"></span>
+  </button>
+
+  <!-- Scripts — main.js sẽ import tất cả -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
