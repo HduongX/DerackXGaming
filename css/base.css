@@ -1,0 +1,54 @@
+/* ============================================================
+   BASE — Variables, Reset, Typography
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --bg: #04040a;
+  --fg: #f0f0f8;
+  --muted: #8a8aa8;
+  --purple: #8b5cf6;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Fonts */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide native cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+  body,
+  body a,
+  body button {
+    cursor: none;
+  }
+}
+
+/* Utility keyframe — used across multiple files */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
