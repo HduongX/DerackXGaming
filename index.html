@@ -2,194 +2,211 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>DerackXGaming Portfolio</title>
-
-  <!-- Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DerackXGaming — Cosmic Minimal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/effects.css">
-  <link rel="stylesheet" href="css/loader.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- Three.js và Lenis Smooth Scroll qua CDN -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+  
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="no-select">
 
-  <!-- BACKGROUND -->
-  <canvas id="stars"></canvas>
-  <div class="nebula">
-    <div class="nebula-blob"></div>
-    <div class="nebula-blob"></div>
-    <div class="nebula-blob"></div>
-  </div>
+  <!-- 3D Canvas Background -->
+  <canvas id="webgl-canvas"></canvas>
 
-  <!-- CUSTOM CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- LOADER -->
-  <div id="loader">
-    <div class="orb-wrap">
-      <div class="orb"></div>
-      <div class="ring ring-1"></div>
-      <div class="ring ring-2"></div>
-      <div class="ring ring-3"></div>
+  <!-- Audio Player (Góc trái) -->
+  <div class="audio-player">
+    <button id="play-pause-btn" class="audio-btn">
+      <svg id="icon-play" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="icon-pause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <div class="audio-info">
+      <span class="audio-label">NOW PLAYING</span>
+      <span id="audio-title">Loading...</span>
     </div>
-    <div class="loader-label">Đang khởi tạo vũ trụ</div>
-    <div class="loader-status" id="loaderStatus">Đồng bộ hệ thống sao...</div>
-    <div class="progress-wrap">
-      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <div class="progress-text"><span id="progressNum">0</span>%</div>
-    </div>
+    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5">
   </div>
 
-  <!-- ENTER SCREEN -->
-  <div id="enterScreen" class="hidden">
-    <button id="enterBtn" class="enter-btn"><span>Bạn đã sẵn sàng chưa!</span></button>
-  </div>
-
-  <!-- MAIN -->
-  <main id="main" class="hidden">
-
-    <nav class="nav">
-      <div class="logo"><span class="star">✦</span> DerackXGaming</div>
-      <div class="nav-links">
-        <a href="#about">Về tôi</a>
-        <a href="#skills">Kỹ năng</a>
-        <a href="#projects">Dự án</a>
-        <a href="#contact">Liên hệ</a>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="logo"><span>✦</span> DerackXGaming</div>
+    <div class="nav-menu">
+      <a href="#about" class="nav-link">Về tôi</a>
+      <div class="dropdown">
+        <button class="nav-link dropbtn">Tiện ích ▾</button>
+        <div class="dropdown-content">
+          <button class="drop-item" onclick="openModal('periodic')">🧪 Bảng Tuần Hoàn</button>
+          <button class="drop-item" onclick="openModal('calculator')">🧮 Máy Tính</button>
+          <button class="drop-item" onclick="openModal('timetable')">📅 Thời Khóa Biểu</button>
+        </div>
       </div>
-    </nav>
+      <a href="#gallery" class="nav-link">Thư viện ảnh</a>
+      <a href="#contact" class="nav-link">Liên hệ</a>
+    </div>
+  </header>
 
+  <!-- Hero Section -->
+  <main>
     <section class="hero">
-      <div class="hero-eyebrow">✦ Portfolio 2026 ✦</div>
-      <h1 class="hero-title">
-        <span class="line">Xin chào, tôi là</span>
-        <span class="name">DerackXGaming</span>
-      </h1>
-      <p class="hero-sub">Creative Developer · Designer · Dreamer</p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">Khám phá</a>
-        <a href="#contact" class="btn-ghost">Liên hệ</a>
-      </div>
-      <div class="scroll-indicator">
-        <span>Cuộn xuống</span>
-        <div class="scroll-line"></div>
-      </div>
-    </section>
-
-    <section id="about" class="section about reveal-on-scroll">
-      <div class="about-visual">
-        <div class="photo-frame">
-          <div class="photo-inner">🧑‍🚀</div>
-          <div class="orbit orbit-1"></div>
-          <div class="orbit orbit-2"></div>
-        </div>
-      </div>
-      <div class="about-content">
-        <div class="section-label">01 — Về tôi</div>
-        <h2 class="section-title">Một linh hồn<br>phiêu du giữa các vì sao</h2>
-        <p>
-          Tôi là một <strong>creative developer</strong> với niềm đam mê bất tận
-          trong việc tạo ra những trải nghiệm số đẹp đến mức khiến người ta phải nín thở.
-          Tôi tin rằng mỗi pixel đều có linh hồn, mỗi chuyển động đều có câu chuyện riêng.
-        </p>
-        <p>
-          Khi không viết code, tôi dành thời gian ngắm nhìn bầu trời đêm,
-          tưởng tượng về những vì sao xa xôi và tự hỏi: <em>"Nếu mình có thể
-          đưa vũ trụ vào một trang web thì sẽ như thế nào?"</em>
-        </p>
-      </div>
-    </section>
-
-    <section id="skills" class="section skills">
-      <div class="section-label center reveal-on-scroll">02 — Kỹ năng</div>
-      <h2 class="section-title center reveal-on-scroll">Vũ khí của tôi</h2>
-      <div class="skills-grid">
-        <div class="skill-card reveal-on-scroll">
-          <span class="skill-icon">💻</span>
-          <div class="skill-name">Frontend</div>
-          <div class="skill-desc">HTML · CSS · JS · React</div>
-        </div>
-        <div class="skill-card reveal-on-scroll">
-          <span class="skill-icon">🎨</span>
-          <div class="skill-name">Design</div>
-          <div class="skill-desc">UI/UX · Figma · Motion</div>
-        </div>
-        <div class="skill-card reveal-on-scroll">
-          <span class="skill-icon">⚙️</span>
-          <div class="skill-name">Backend</div>
-          <div class="skill-desc">Node.js · Python · SQL</div>
-        </div>
-        <div class="skill-card reveal-on-scroll">
-          <span class="skill-icon">🚀</span>
-          <div class="skill-name">Creative</div>
-          <div class="skill-desc">Three.js · GSAP · WebGL</div>
+      <div class="hero-content">
+        <p class="subtitle">✦ PORTFOLIO 2026 ✦</p>
+        <h1 class="title-auto-fit">Xin chào, tôi là <br><span class="gradient-text">DerackXGaming</span></h1>
+        <p class="desc">Creative Developer · Designer · Dreamer</p>
+        <div class="hero-actions">
+          <a href="#gallery" class="btn primary">Khám phá</a>
+          <a href="#contact" class="btn secondary">Liên hệ</a>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section projects">
-      <div class="section-label reveal-on-scroll">03 — Dự án</div>
-      <h2 class="section-title reveal-on-scroll">Những tinh cầu<br>tôi đã tạo ra</h2>
-      <div class="projects-grid">
-        <a href="#" class="project-card reveal-on-scroll">
-          <div class="project-image">🪐</div>
-          <div class="project-meta">
-            <div class="project-year">2025</div>
-            <h3>Dự án đầu tiên</h3>
-            <p>Hiện chưa có.</p>
-          </div>
-        </a>
-        <a href="#" class="project-card reveal-on-scroll">
-          <div class="project-image">🌌</div>
-          <div class="project-meta">
-            <div class="project-year">2024</div>
-            <h3>Dự án thứ hai</h3>
-            <p>Hiện chưa có.</p>
-          </div>
-        </a>
-        <a href="#" class="project-card reveal-on-scroll">
-          <div class="project-image">✨</div>
-          <div class="project-meta">
-            <div class="project-year">2024</div>
-            <h3>Dự án thứ ba</h3>
-            <p>Hiện chưa có.</p>
-          </div>
-        </a>
+    <!-- About Section -->
+    <section id="about" class="section">
+      <h2 class="section-title">Về tôi</h2>
+      <p class="section-text">
+        Tôi là một lập trình viên sáng tạo đam mê xây dựng những trải nghiệm số tuyệt vời. 
+        Tôi thích sự tối giản nhưng đầy tinh tế, và tin rằng vũ trụ bao la luôn là nguồn cảm hứng bất tận.
+      </p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+      <h2 class="section-title">Thư viện ảnh</h2>
+      <div class="gallery-layout">
+        <!-- Khung ảnh xen kẽ (Trên/Dưới & Tròn) -->
+        <div class="gallery-item frame-rect reveal">
+          <img src="https://picsum.photos/seed/space1/800/500" alt="Gallery Image 1">
+        </div>
+        <div class="gallery-item frame-circle reveal delay-1">
+          <img src="https://picsum.photos/seed/space2/500/500" alt="Gallery Image 2">
+        </div>
+        <div class="gallery-item frame-rect reveal delay-2">
+          <img src="https://picsum.photos/seed/space3/800/500" alt="Gallery Image 3">
+        </div>
+        <div class="gallery-item frame-circle reveal delay-3">
+          <img src="https://picsum.photos/seed/space4/500/500" alt="Gallery Image 4">
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="section contact">
-      <div class="section-label center reveal-on-scroll">04 — Liên hệ</div>
-      <h2 class="section-title center big reveal-on-scroll">Cùng nhau tạo nên<br>điều kỳ diệu</h2>
-      <a href="mailto:hello@example.com" class="email-link reveal-on-scroll">derackxgaming@gmail.com</a>
-      <div class="socials reveal-on-scroll">
-        <a href="https://github.com/HduongX" target="_blank">GitHub</a>
-        <a href="https://www.facebook.com/derack.16.x" target="_blank">Facebook</a>
-        <a href="https://www.youtube.com/@derackxgaming" target="_blank">Youtube</a>
+    <!-- Contact Section -->
+    <section id="contact" class="section text-center">
+      <h2 class="section-title">Kết nối</h2>
+      <p class="section-text">Hãy gửi lời chào đến tôi qua email.</p>
+      <div class="email-wrapper">
+        <span id="email-text" class="allow-copy" title="Bấm để sao chép">hello@derackxgaming.com</span>
+        <span id="copy-toast" class="copy-toast">Đã sao chép!</span>
       </div>
     </section>
-
-    <footer class="footer">
-      <div>© 2026 DerackXGaming — All rights reserved</div>
-      <div>Made with ✦ in the cosmos</div>
-    </footer>
-
   </main>
 
-  <!-- AUDIO TOGGLE -->
-  <button class="audio-toggle" id="audioToggle" aria-label="Toggle music">
-    <span class="wave"></span>
-    <span class="wave"></span>
-    <span class="wave"></span>
-    <span class="wave"></span>
-  </button>
+  <!-- Modals (Tiện ích) -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      
+      <!-- 1. Bảng Tuần Hoàn (Giả lập 3D hiệu ứng) -->
+      <div id="modal-periodic" class="modal-content">
+        <h3>Bảng Tuần Hoàn Hóa Học</h3>
+        <p class="modal-sub">Lướt qua các nguyên tố để xem chi tiết</p>
+        <div class="periodic-grid">
+          <!-- Rút gọn 1 số nguyên tố tiêu biểu -->
+          <div class="element" style="--c: #ff6b6b"><span>H</span><small>1</small></div>
+          <div class="element" style="--c: #feca57"><span>He</span><small>2</small></div>
+          <div class="element" style="--c: #ff9ff3"><span>Li</span><small>3</small></div>
+          <div class="element" style="--c: #48dbfb"><span>Be</span><small>4</small></div>
+          <div class="element" style="--c: #1dd1a1"><span>B</span><small>5</small></div>
+          <div class="element" style="--c: #5f27cd"><span>C</span><small>6</small></div>
+          <div class="element" style="--c: #54a0ff"><span>N</span><small>7</small></div>
+          <div class="element" style="--c: #00d2d3"><span>O</span><small>8</small></div>
+          <div class="element" style="--c: #c8d6e5"><span>F</span><small>9</small></div>
+          <div class="element" style="--c: #576574"><span>Ne</span><small>10</small></div>
+          <!-- Bạn có thể tự thêm các nguyên tố khác tại đây -->
+        </div>
+      </div>
 
-  <!-- Scripts — main.js sẽ import tất cả -->
+      <!-- 2. Máy Tính -->
+      <div id="modal-calculator" class="modal-content">
+        <h3>Máy Tính</h3>
+        <div class="calculator">
+          <div class="calc-screen">
+            <div id="calc-history" class="calc-history"></div>
+            <div id="calc-display" class="calc-display">0</div>
+          </div>
+          <div class="calc-keys">
+            <button class="key op" onclick="calcAction('clear')">C</button>
+            <button class="key op" onclick="calcAction('del')">⌫</button>
+            <button class="key op" onclick="calcAction('%')">%</button>
+            <button class="key op" onclick="calcAction('/')">÷</button>
+            <button class="key" onclick="calcAction('7')">7</button>
+            <button class="key" onclick="calcAction('8')">8</button>
+            <button class="key" onclick="calcAction('9')">9</button>
+            <button class="key op" onclick="calcAction('*')">×</button>
+            <button class="key" onclick="calcAction('4')">4</button>
+            <button class="key" onclick="calcAction('5')">5</button>
+            <button class="key" onclick="calcAction('6')">6</button>
+            <button class="key op" onclick="calcAction('-')">-</button>
+            <button class="key" onclick="calcAction('1')">1</button>
+            <button class="key" onclick="calcAction('2')">2</button>
+            <button class="key" onclick="calcAction('3')">3</button>
+            <button class="key op" onclick="calcAction('+')">+</button>
+            <button class="key span-2" onclick="calcAction('0')">0</button>
+            <button class="key" onclick="calcAction('.')">.</button>
+            <button class="key op equal" onclick="calcAction('=')">=</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Thời Khóa Biểu (Dựa theo ảnh) -->
+      <div id="modal-timetable" class="modal-content">
+        <h3>Thời Khóa Biểu - Lớp 12TN5</h3>
+        <p class="modal-sub">Áp dụng từ 19/10/2026</p>
+        <div class="timetable-wrapper">
+          <table class="timetable">
+            <thead>
+              <tr>
+                <th>Tiết</th>
+                <th>Thứ 2</th>
+                <th>Thứ 3</th>
+                <th>Thứ 4</th>
+                <th>Thứ 5</th>
+                <th>Thứ 6</th>
+                <th>Thứ 7</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="session-label"><td colspan="7">BUỔI SÁNG</td></tr>
+              <tr><td>1</td><td>HĐTN_HN</td><td>Lịch sử</td><td>Thể dục</td><td>Toán học</td><td>Ngữ văn</td><td></td></tr>
+              <tr><td>2</td><td>Lịch sử</td><td>GDDP</td><td>Thể dục</td><td>Toán học</td><td>Ngữ văn</td><td></td></tr>
+              <tr><td>3</td><td>CNCN</td><td>CNCN</td><td>Tin học</td><td>Vật lí</td><td>Toán học</td><td></td></tr>
+              <tr><td>4</td><td>GDQP</td><td>Hóa học</td><td>Tiếng anh</td><td>Tiếng anh</td><td>Hóa học</td><td></td></tr>
+              <tr><td>5</td><td>Tin học</td><td>Tiếng anh</td><td>Vật lí</td><td></td><td>HĐTN_HN</td><td></td></tr>
+              
+              <tr class="session-label"><td colspan="7">BUỔI CHIỀU</td></tr>
+              <tr><td>1</td><td>Toán học</td><td></td><td></td><td>Toán học</td><td></td><td></td></tr>
+              <tr><td>2</td><td>Toán học</td><td></td><td></td><td>Hóa học</td><td></td><td></td></tr>
+              <tr><td>3</td><td>Ngữ văn</td><td></td><td></td><td>Vật lí</td><td></td><td></td></tr>
+              <tr><td>4</td><td>Ngữ văn</td><td></td><td></td><td>Ngữ văn</td><td></td><td></td></tr>
+              <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Import Module JS -->
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
