@@ -76,9 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Audio Player
   const tracks = [
-    { file: 'music/track1.mp3', name: 'Ambient Space 1' },
-    { file: 'music/track2.mp3', name: 'Cosmic Journey 2' },
-    { file: 'music/track3.mp3', name: 'Starlight 3' }
+    { file: 'music/Bread-Lukrembo.mp3', name: 'Ambient Space 1' },
+    { file: 'music/lukrembo-marshmallow.mp3', name: 'Cosmic Journey 2' },
+    { file: 'music/lukrembo-onion.mp3', name: 'Starlight 3' }
   ];
   
   const audio = new Audio();
